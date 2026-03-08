@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world
+  namespace: argocd
+spec:
+  project: helm
+  source:
+    repoURL: https://github.com/crizstian/my-gitops-demo.git
+    targetRevision: main
+    path: charts/hello-world
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hello-world
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
