@@ -4,4 +4,13 @@ namePrefix: dev-
 resources:
   - ../../base
 commonLabels:
+  app: emailservice
   env: dev
+patches:
+  - target:
+      kind: Deployment
+      name: emailservice
+    patch: |
+      - op: replace
+        path: /spec/replicas
+        value: 1
