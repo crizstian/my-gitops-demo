@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: emailservice-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/crizstian/my-gitops-demo.git
+    targetRevision: main
+    path: apps/my-microservice/overlays/dev
+    kustomize:
+      namePrefix: "demo"   # opcional, si quieres ajustar
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
