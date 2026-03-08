@@ -4,7 +4,7 @@ metadata:
   name: emailservice-dev
   namespace: argocd
 spec:
-  project: default
+  project: kustomize
   source:
     repoURL: https://github.com/crizstian/my-gitops-demo.git
     targetRevision: main
