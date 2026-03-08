@@ -13,19 +13,19 @@ spec:
             namespace: prod
   template:
     metadata:
-      name: my-paymentservice-{{env}}
+      name: 'my-paymentservice-{{env}}'
       labels:
         harness.io/serviceRef: my-paymentservice
-        harness.io/envRef: {{env}}
+        harness.io/envRef: '{{env}}'
     spec:
       project: default
       source:
-        repoURL: https://github.com/crizstian/my-gitops-demo.git
-        targetRevision: main
-        path: apps/my-microservice/overlays/{{env}}
+        repoURL: 'https://github.com/crizstian/my-gitops-demo.git'
+        targetRevision: 'main'
+        path: 'apps/my-microservice/overlays/{{env}}'
       destination:
-        server: https://kubernetes.default.svc
-        namespace: {{namespace}}
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
       syncPolicy:
         automated:
           selfHeal: true
