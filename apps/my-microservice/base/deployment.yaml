@@ -16,18 +16,6 @@ spec:
     spec:
       containers:
       - name: emailservice
-        image: gcr.io/google-samples/microservices-demo/emailservice:v0.10.1
+        image: docker.io/nginxdemos/hello
         ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-            path: /_healthz
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /_healthz
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 5
+        - containerPort: 80

@@ -6,6 +6,6 @@ spec:
   selector:
     app: emailservice
   ports:
-  - port: 80
-    targetPort: 8080
+  - port: 8000
+    targetPort: 80
   type: ClusterIP
