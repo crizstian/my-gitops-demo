@@ -3,5 +3,6 @@
   "environment": "dev",
   "harness_service": "paymentservice-gitops",
   "image_tag": "0.1",
+  "replicas": 1,
   "server_address": "https://kubernetes.default.svc"
 }

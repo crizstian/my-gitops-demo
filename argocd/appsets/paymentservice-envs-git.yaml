@@ -26,6 +26,14 @@ spec:
         kustomize:
           images:
           - nginxdemos/hello:{{image_tag}}
+                    patches:
+          - target:
+              kind: Deployment
+              name: paymentservice
+            patch: |
+              - op: replace
+                path: /spec/replicas
+                value: {{replicas}}
       destination:
         server: '{{server_address}}'
         namespace: '{{environment}}'
