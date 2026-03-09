@@ -16,4 +16,4 @@ patches:
         value: 5
 images:
   - name: docker.io/nginxdemos/hello
-    newTag: 0.1
+    newTag: "0.1"
