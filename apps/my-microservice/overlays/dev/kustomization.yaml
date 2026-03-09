@@ -1,19 +1,16 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-namePrefix: dev-
-resources:
-  - ../../base
 commonLabels:
-  app: emailservice
-  env: dev
-patches:
-  - target:
-      kind: Deployment
-      name: emailservice
-    patch: |
-      - op: replace
-        path: /spec/replicas
-        value: 1
+  app: "emailservice"
+  env: "dev"
 images:
-  - name: docker.io/nginxdemos/hello
-    newTag: "0.2"
+- name: "docker.io/nginxdemos/hello"
+  newTag: "0.2"
+apiVersion: "kustomize.config.k8s.io/v1beta1"
+kind: "Kustomization"
+namePrefix: "dev-"
+patches:
+- patch: "- op: replace\n  path: /spec/replicas\n  value: 1\n"
+  target:
+    kind: "Deployment"
+    name: "emailservice"
+resources:
+- "../../base"
