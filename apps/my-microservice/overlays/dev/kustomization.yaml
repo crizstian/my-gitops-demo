@@ -14,3 +14,6 @@ patches:
       - op: replace
         path: /spec/replicas
         value: 1
+images:
+  - name: docker.io/nginxdemos/hello
+    newTag: 0.2
