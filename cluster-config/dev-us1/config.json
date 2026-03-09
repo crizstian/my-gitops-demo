@@ -1,7 +1,7 @@
 {
   "cluster_name": "se-latam-test",
   "environment": "dev",
-  "harness_service": "paymentservice",
+  "harness_service": "paymentservice-gitops",
   "image_tag": "0.1",
   "server_address": "https://kubernetes.default.svc"
 }
