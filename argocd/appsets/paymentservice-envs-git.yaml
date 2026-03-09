@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: paymentservice-envs-git
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/crizstian/my-gitops-demo.git
+        revision: main
+        files:
+          - path: "cluster-config/**/config.json"
+  template:
+    metadata:
+      name: '{{cluster_name}}-paymentservice'
+      labels:
+        harness.io/serviceRef: '{{harness_service}}'
+        harness.io/envRef: '{{environment}}'
+        harness.io/buildRef: '{{image_tag}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/crizstian/my-gitops-demo.git
+        targetRevision: main
+        path: "services/paymentservice/base"
+        kustomize:
+          images:
+          - nginxdemos/hello:{{image_tag}}
+      destination:
+        server: '{{server_address}}'
+        namespace: '{{environment}}'
+      syncPolicy:
+        automated:
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true
+        - PruneLast=true
